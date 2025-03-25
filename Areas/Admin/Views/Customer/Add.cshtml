@@ -1,0 +1,53 @@
+﻿
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+    <body>
+
+    <h2>Müşteri Ekleme Formu</h2>
+    <hr />
+       
+       <form action="/Admin/Customer/Save" method="post">
+    <table width="800">
+    <tr>
+        <td>Müşteri Adı</td>
+        <td> : </td>
+        <td> <input name="CustomerName" type="text" placeholder="Müşteri Adı Giriniz" maxlength="15"/></td>
+    </tr>
+            <tr>
+                <td>Müşteri İletişim Adı</td>
+                <td> : </td>
+                <td> <input name="ContactName" type="text" placeholder="Lütfen İletişim Adı Giriniz" /></td>
+            </tr>
+        <tr>
+            <td>Müşteri Adresi</td>
+            <td> : </td>
+            <td> <textarea name="Address"> 
+                 </textarea>
+            </td>
+        </tr>
+            <tr>
+                <td>Müşteri Posta Kodu</td>
+                <td> : </td>
+                <td> <input name="PostalCode" type="text" placeholder="Lütfen Posta Kodu Giriniz" /></td>
+            </tr>
+            <tr>
+                <td>Müşteri Şehir</td>
+                <td> : </td>
+                <td> <input name="City" type="text" placeholder="Lütfen Şehir Giriniz" /></td>
+            </tr>
+            <tr>
+                <td>Müşteri Ülke</td>
+                <td> : </td>
+                <td> <input name="Country" type="text" placeholder="Lütfen Ülke Giriniz" /></td>
+            </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td> <input type="submit" value="Kaydet" />
+        </tr>
+</table>
+    </form>
+
+    </body>
+</html>
