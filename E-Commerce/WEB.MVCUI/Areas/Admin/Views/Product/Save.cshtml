@@ -1,0 +1,15 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+    <body>
+        <h2 style="color:@ViewBag.ResultColor;">
+              @ViewBag.Result
+            </h2>
+        <hr />
+        <p>
+            @Html.Raw(ViewBag.Message);
+        </p>
+
+        <a href="/Admin/Product/Index">Ürün Listesine Dön</a>
+    </body>
+</html>

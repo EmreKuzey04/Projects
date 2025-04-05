@@ -1,0 +1,55 @@
+﻿@model List<Shipper>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gönderici Listesi</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h2 class="text-center">Gönderici Listesi</h2>
+
+        <div class="mb-3">
+            <a href="/Shipper/Add" class="btn btn-success">+ Gönderici Ekle</a>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Gönderici Adı</th>
+                    <th>Numara</th>
+                    <th>Güncelle</th>
+                    <th>Sil</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ShipperID</td>
+                        <td>@(item.ShipperName ?? "-")</td>
+                        <td>@(item.Phone ?? "-")</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Shipper", new { id = item.ShipperID })" class="btn btn-warning btn-sm">Güncelle</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Shipper", new { id = item.ShipperID })" class="btn btn-danger btn-sm" onclick="return confirm('Bu göndericiyi silmek istediğinize emin misiniz?');">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

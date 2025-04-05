@@ -1,0 +1,55 @@
+﻿
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head><title></title></head>
+    <body>
+
+    <h2>Personel Ekleme Formu</h2>
+    <hr />
+       
+       <form action="/Employee/Save" method="post">
+    <table width="800">
+    <tr>
+        <td>Personel Adı</td>
+        <td> : </td>
+        <td> <input name="FirstName" type="text" placeholder="Personel Adı Giriniz" maxlength="15"/></td>
+    </tr>
+            <tr>
+                <td>Personel Soyadı</td>
+                <td> : </td>
+                <td> <input name="LastName" type="text" placeholder="Personel Soyadı Giriniz" /></td>
+            </tr>
+        <tr>
+            <td>Personel Doğum Tarihi</td>
+            <td> : </td>
+            <td> <input name="BirthDate" type="datetime" placeholder="Lütfen Doğum Tarihi Giriniz" /></td>
+        </tr>
+            <tr>
+                <td>Personel İşe Giriş Tarihi</td>
+                <td> : </td>
+                <td> <input name="HireDate" type="datetime" placeholder="İşe Giriş Tarihi Giriniz" /></td>
+            </tr>
+            <tr>
+                <td>Personel Şehir</td>
+                <td> : </td>
+                <td> <input name="City" type="text" placeholder="Lütfen Şehir Giriniz" /></td>
+            </tr>
+            <tr>
+                <td>Personel Ülke</td>
+                <td> : </td>
+                <td> <input name="Country" type="text" placeholder="Lütfen Ülke Giriniz" /></td>
+            </tr>
+            <tr>
+                <td>Personel İletişim Numarası</td>
+                <td> : </td>
+                <td> <input name="Phone" type="text" placeholder="0 OLMADAN GİRİNİZ" /></td>
+            </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td> <input type="submit" value="Kaydet" />
+        </tr>
+</table>
+    </form>
+
+    </body>
+</html>
