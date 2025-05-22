@@ -1,0 +1,92 @@
+[
+  {
+    
+    "SupplierName": "Anadolu Gıda",
+    "ContactName": "Ahmet Yılmaz",
+    "Address": "İvedik OSB Mah. 1460. Cad.",
+    "PostalCode": "06370",
+    "City": "Ankara",
+    "Country": "Türkiye",
+    "Phone": "03124445566",
+    "Products": [
+      {
+        
+        "ProductName": "Zeytinyağı",
+        "UnitPrice": 25.5,
+        "UnitsInStock": 150
+      }
+    ]
+  },
+  {
+    
+    "SupplierName": "Marmara Tedarik",
+    "ContactName": "Merve Demir",
+    "Address": "Beylikdüzü Mah. 5. Sok.",
+    "PostalCode": "34520",
+    "City": "İstanbul",
+    "Country": "Türkiye",
+    "Phone": "02125556677",
+    "Products": [
+      {
+       
+        "ProductName": "Peynir",
+        "UnitPrice": 45.75,
+        "UnitsInStock": 80
+      }
+    ]
+  },
+  {
+    
+    "SupplierName": "Ege Tarım",
+    "ContactName": "Hüseyin Kaya",
+    "Address": "Bornova Sanayi Sitesi",
+    "PostalCode": "35000",
+    "City": "İzmir",
+    "Country": "Türkiye",
+    "Phone": "02324671234",
+    "Products": [
+      {
+        
+        "ProductName": "Domates Salçası",
+        "UnitPrice": 30.0,
+        "UnitsInStock": 200
+      }
+    ]
+  },
+  {
+   
+    "SupplierName": "Karadeniz Market",
+    "ContactName": "Ayşe Uçar",
+    "Address": "Atatürk Bulvarı No:89",
+    "PostalCode": "61000",
+    "City": "Trabzon",
+    "Country": "Türkiye",
+    "Phone": "04622223344",
+    "Products": [
+      {
+       
+        "ProductName": "Fındık",
+        "UnitPrice": 80.0,
+        "UnitsInStock": 50
+      }
+    ]
+  },
+  {
+    
+    "SupplierName": "Doğu Gıda",
+    "ContactName": "Kemal Aksoy",
+    "Address": "Erzurum Yolu Üzeri",
+    "PostalCode": "25000",
+    "City": "Erzurum",
+    "Country": "Türkiye",
+    "Phone": "04422334455",
+    "Products": [
+      {
+        
+        "ProductName": "Bal",
+        "UnitPrice": 55.25,
+        "UnitsInStock": 120
+      }
+    ]
+  }
+]
