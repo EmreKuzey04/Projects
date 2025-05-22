@@ -1,0 +1,35 @@
+﻿<form method="post" action="/Cart/Checkout" class="mt-4">
+    <div class="mb-3">
+        <label for="fullName" class="form-label">Ad Soyad</label>
+        <input type="text" id="fullName" name="fullName" required class="form-control" placeholder="Adınızı ve Soyadınızı Giriniz" />
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Adres</label>
+        <textarea id="address" name="address" required class="form-control" rows="4" placeholder="Adresinizi Giriniz"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="employeeId" class="form-label">Sipariş Temsilcinizi Seçin</label>
+        <select id="employeeId" name="employeeId" class="form-select" required>
+            <option value="">Lütfen seçiniz</option>
+            @foreach (var emp in ViewBag.Employees)
+            {
+                <option value="@emp.EmployeeID">@emp.EmployeeName</option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="shipperId" class="form-label">Kargo Şirketi Seçin</label>
+        <select id="shipperId" name="shipperId" class="form-select" required>
+            <option value="">Lütfen seçiniz</option>
+            @foreach (var shipper in ViewBag.Shippers)
+            {
+                <option value="@shipper.ShipperID">@shipper.ShipperName</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg">Siparişi Onayla</button>
+</form>

@@ -1,0 +1,99 @@
+﻿@using WEB.MVCUI.Areas.Admin.Models.Dtos
+@model List<CartItem>
+
+<h2>Sepetim</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Sepetiniz boş.</p>
+}
+else
+{
+    <style>
+        form.d-inline button {
+            background-color: #f39c12;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+            form.d-inline button:hover {
+                background-color: #e67e22;
+            }
+
+        .total-summary {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .checkout-button {
+            margin-top: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .checkout-button:hover {
+                background-color: #219150;
+            }
+    </style>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Ürün</th>
+                <th>Adet</th>
+                <th>Fiyat</th>
+                <th>Toplam</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.ImageUrl" alt="@item.ProductName" style="height: 50px;" />
+                        @item.ProductName
+                    </td>
+                    <td>
+                        <form action="/Cart/UpdateQuantity" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" style="width: 60px;" />
+                            <button type="submit">Güncelle</button>
+                        </form>
+                    </td>
+                    <td>@item.Price.ToString("C", new System.Globalization.CultureInfo("tr-TR"))</td>
+                    <td>@((item.Price * item.Quantity).ToString("C", new System.Globalization.CultureInfo("tr-TR")))</td>
+                    <td>
+                        <form action="/Cart/Remove" method="post" class="d-inline">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="total-summary">
+        @{
+            var total = Model.Sum(x => x.Price * x.Quantity);
+        }
+        Toplam: @total.ToString("C", new System.Globalization.CultureInfo("tr-TR"))
+    </div>
+
+    <form action="/Cart/Checkout" method="get" style="text-align: right;">
+        <button type="submit" class="checkout-button">Siparişi Tamamla</button>
+    </form>
+}

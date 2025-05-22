@@ -1,0 +1,36 @@
+﻿@model Category
+
+@{
+    ViewData["Title"] = "Kategori Sil";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-danger text-white rounded-top-4">
+            <h4 class="mb-0">Kategori Sil</h4>
+        </div>
+        <div class="card-body">
+            <p class="fs-5">Aşağıdaki kategoriyi silmek üzeresiniz. Bu işlem geri alınamaz. Devam etmek istiyor musunuz?</p>
+
+            <dl class="row">
+                <dt class="col-sm-3">Kategori Adı</dt>
+                <dd class="col-sm-9">@Model.CategoryName</dd>
+
+                <dt class="col-sm-3">Açıklama</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+            </dl>
+
+            <form action="/Admin/Category/DeleteCategory/@Model.CategoryID" method="post">
+                <input type="hidden" asp-for="CategoryID" />
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="@Url.Action("Index", "Category")" class="btn btn-secondary btn-lg px-4">
+                        İptal
+                    </a>
+                    <button type="submit" class="btn btn-danger btn-lg px-4">
+                        <i class="bi bi-trash3-fill"></i> Sil
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

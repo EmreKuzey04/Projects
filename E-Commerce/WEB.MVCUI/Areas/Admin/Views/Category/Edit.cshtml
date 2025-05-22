@@ -1,0 +1,48 @@
+﻿@model Category
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-primary text-white rounded-top-4">
+            <h4 class="mb-0">Kategori Düzenle</h4>
+        </div>
+        <div class="card-body">
+            <form action="/Admin/Category/EditCategory" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="CategoryID" value="@Model.CategoryID" />
+
+                <div class="mb-3">
+                    <label for="CategoryName" class="form-label">Kategori Adı</label>
+                    <input type="text" id="CategoryName" name="CategoryName" class="form-control form-control-lg" value="@Model.CategoryName" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Açıklama</label>
+                    <textarea id="Description" name="Description" class="form-control form-control-lg" rows="3">@Model.Description</textarea>
+                </div>
+
+                @* Mevcut resmi göster *@
+                @if (!string.IsNullOrEmpty(Model.Photo))
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Mevcut Resim</label><br />
+                        <img src="@Model.Photo" class="img-thumbnail mb-2" style="max-height: 200px;" />
+                    </div>
+                }
+
+                @* Yeni resim yükleme alanı *@
+                <div class="mb-3">
+                    <label for="Photo" class="form-label">Yeni Kategori Resmi</label>
+                    <input name="Photo" type="file" accept="image/png, image/jpeg" class="form-control" id="Photo" />
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/Admin/Category/Index" class="btn btn-secondary btn-lg px-4">
+                        İptal
+                    </a>
+                    <button type="submit" class="btn btn-success btn-lg px-4">
+                        <i class="bi bi-save-fill"></i> Kaydet
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

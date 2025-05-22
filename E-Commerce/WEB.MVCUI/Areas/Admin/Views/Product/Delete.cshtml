@@ -1,0 +1,50 @@
+﻿@model WEB.MVCUI.Areas.Admin.Models.Entities.Product
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 border-0">
+        <div class="card-header bg-danger text-white rounded-top-4">
+            <h4 class="mb-0">Ürün Sil</h4>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-warning">
+                <strong>Bu ürünü silmek istediğinizden emin misiniz?</strong>
+            </div>
+
+            <dl class="row">
+                <dt class="col-sm-4">Adı</dt>
+                <dd class="col-sm-8">@Model.ProductName</dd>
+
+                <dt class="col-sm-4">Fiyat</dt>
+                <dd class="col-sm-8">@Model.UnitPrice</dd>
+
+                <dt class="col-sm-4">Stok</dt>
+                <dd class="col-sm-8">@Model.UnitsInStock</dd>
+
+                <dt class="col-sm-4">Açıklama</dt>
+                <dd class="col-sm-8">@Model.Description</dd>
+
+                <dt class="col-sm-4">Kategori ID</dt>
+                <dd class="col-sm-8">@Model.CategoryId</dd>
+
+                <dt class="col-sm-4">Tedarikçi ID</dt>
+                <dd class="col-sm-8">@Model.SupplierID</dd>
+
+                @if (Model.Photos != null && Model.Photos.Any())
+                {
+                    <dt class="col-sm-4">Fotoğraf</dt>
+                    <dd class="col-sm-8">
+                        <img src="@Model.Photos.First().PhotoPath" class="img-thumbnail" style="max-height: 200px;" />
+                    </dd>
+                }
+            </dl>
+
+            <form action="/Admin/Product/DeleteConfirmed" method="post">
+                <input type="hidden" name="id" value="@Model.ProductId" />
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="/Admin/Product/Index" class="btn btn-secondary btn-lg px-4">İptal</a>
+                    <button type="submit" class="btn btn-danger btn-lg px-4">Sil</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

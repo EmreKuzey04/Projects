@@ -1,0 +1,49 @@
+﻿@model List<WEB.MVCUI.Models.ViewModels.MyOrderViewModel>
+@{
+    ViewData["Title"] = "Siparişlerim";
+}
+
+<h2 class="mb-4">Siparişlerim</h2>
+
+@if (Model.Count == 0)
+{
+    <div class="alert alert-info">Henüz sipariş geçmişiniz yok.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Sipariş No</th>
+                <th>Tarih</th>
+                <th>Açıklama</th>
+                <th>Toplam Tutar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr class="table-primary">
+                    <td>@order.OrderID</td>
+                    <td>@order.OrderDate.?ToString("dd.MM.yyyy")</td>
+                    <td>@order.Description</td>
+                    <td>@(order.Total?.ToString("C", new System.Globalization.CultureInfo("tr-TR")))</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <strong>Ürünler:</strong>
+                        <ul class="mb-0">
+                            @foreach (var product in order.Products)
+                            {
+                                <li>
+                                    @product.ProductName - @product.Quantity adet - @((product.UnitPrice ?? 0).ToString("C", new System.Globalization.CultureInfo("tr-TR")))
+                                </li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

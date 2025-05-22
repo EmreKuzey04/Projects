@@ -1,0 +1,253 @@
+﻿@model WEB.MVCUI.Areas.Admin.Models.Entities.Product
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>@Model.ProductName - Ürün Detayı</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Online Shop - Ürün Detayı" name="keywords">
+    <meta content="Ürün Detayları" name="description">
+
+    <!-- Favicon -->
+    <link href="/img/productfavicon.ico" rel="icon">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Genel Stil */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container-fluid {
+            padding: 0 15px;
+        }
+
+        /* Ürün Detayları Alanı */
+        .product-container {
+            background-color: rgba(255, 255, 0, 0.2); /* Şeffaf sarı */
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            margin-top: 40px;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+            .product-image:hover {
+                transform: scale(1.05);
+            }
+
+        .product-details {
+            margin-top: 20px;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #2c3e50; /* Koyu mavi */
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: #7f8c8d;
+            font-weight: normal;
+            line-height: 1.6;
+        }
+
+        .thumbnail {
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s ease;
+            border: 1px solid #ccc;
+        }
+
+            .thumbnail:hover {
+                transform: scale(1.1);
+                border-color: #3498db;
+            }
+
+        .mt-3 {
+            margin-top: 20px;
+        }
+
+        /* Sepete Ekle Butonu */
+        .add-to-cart-btn {
+            background-color: #f39c12;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .add-to-cart-btn:hover {
+                background-color: #e67e22;
+            }
+
+        /* Önerilen Ürünler Alanı */
+        .section-title {
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+            margin: 20px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+            .section-title span {
+                background-color: #f39c12;
+                padding: 5px 10px;
+                border-radius: 5px;
+                color: white;
+            }
+
+        .product-item {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+            .product-item:hover {
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .product-item img {
+                width: 100%;
+                max-width: 200px;
+                border-radius: 10px;
+                margin-bottom: 15px;
+            }
+
+        .product-action a {
+            color: #333;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 5px;
+            text-decoration: none;
+        }
+
+            .product-action a:hover {
+                border-color: #f39c12;
+                color: #f39c12;
+            }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #f39c12;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            display: none;
+        }
+
+            .back-to-top:hover {
+                background-color: #e67e22;
+            }
+
+            .back-to-top i {
+                font-size: 20px;
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Shop Detail Start -->
+    <div class="container-fluid pb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 mb-30">
+                <div class="product-container">
+                    <h2>@Model.ProductName</h2>
+
+                    <!-- Büyük Resim -->
+                    <div>
+                        <img id="mainImage" class="product-image" src="@Model.Photos?.FirstOrDefault()?.PhotoPath" alt="Main Image" />
+                    </div>
+
+                    <!-- Küçük Resimler / Galeri -->
+                    <div class="mt-3">
+                        <div class="row">
+                            @foreach (var photo in Model.Photos)
+                            {
+                                <div class="col-3 mb-2">
+                                    <img class="thumbnail" src="@photo.PhotoPath" width="80" onclick="changeImage('@photo.PhotoPath')" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="product-details">
+                        <p class="product-description"><b>Ürün Açıklama:</b> @Model.Description</p>
+                        <h4 class="product-price">@Model.UnitPrice ₺</h4>
+                        <h4 class="product-price">@Model.UnitsInStock Stokta</h4>
+                    </div>
+
+                    <!-- Sepete Ekle Butonu -->
+                    <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                        <input type="hidden" name="productId" value="@Model.ProductId" />
+                        <label for="quantity">Miktar:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="@Model.UnitsInStock" required />
+                        <button type="submit" class="add-to-cart-btn">Sepete Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shop Detail End -->
+
+    <script>
+        // Büyük resmi değiştiren fonksiyon
+        function changeImage(imagePath) {
+            document.getElementById("mainImage").src = imagePath;
+        }
+
+        // Back to top button show/hide
+        window.onscroll = function () {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                document.querySelector('.back-to-top').style.display = "block";
+            } else {
+                document.querySelector('.back-to-top').style.display = "none";
+            }
+        };
+
+        document.querySelector('.back-to-top').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+    <!-- You May Also Like Section (Önerilen Ürünler) -->
+    <div class="container-fluid pt-5 pb-3">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
+            <span class="bg-secondary pr-3">Featured Products</span>
+        </h2>
+        <div class="row px-xl-5">
+            @await Component.InvokeAsync("Products")
+        </div>
+    </div>
+    <!-- Products End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn back-to-top"><i class="fa fa-angle-double-up"></i></a>
+</body>
+
+</html>

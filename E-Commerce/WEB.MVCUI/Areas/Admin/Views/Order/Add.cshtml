@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Sipariş Ekle";
+}
+
+<h2>Sipariş Ekleme Formu</h2>
+<hr />
+
+<form action="/Admin/Order/Save" method="post">
+    <table width="800">
+        <tr>
+            <td>Siparişi Veren Müşteri</td>
+            <td>:</td>
+            <td>
+                <select name="CustomerID" class="form-select">
+                    <option value="">-- Müşteri Seçiniz --</option>
+                    @foreach (var customer in ViewBag.Customers)
+                    {
+                        <option value="@customer.CustomerID">@customer.CustomerName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Sipariş Tarihi</td>
+            <td>:</td>
+            <td>
+                <input name="OrderDate" type="datetime-local" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Sipariş Açıklaması</td>
+            <td>:</td>
+            <td>
+                <input name="Description" type="text" placeholder="Sipariş Açıklaması Giriniz" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>Gönderici Firma</td>
+            <td>:</td>
+            <td>
+                <select name="ShipperID" class="form-select">
+                    <option value="">-- Gönderici Firma Seçiniz --</option>
+                    @foreach (var shipper in ViewBag.Shippers)
+                    {
+                        <option value="@shipper.ShipperID">@shipper.ShipperName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Personel</td>
+            <td>:</td>
+            <td>
+                <select name="EmployeeID" class="form-select">
+                    <option value="">-- Personel Seçiniz --</option>
+                    @foreach (var employee in ViewBag.Employees)
+                    {
+                        <option value="@employee.EmployeeID">@employee.FirstName @employee.LastName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </td>
+        </tr>
+    </table>
+</form>

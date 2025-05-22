@@ -1,0 +1,22 @@
+﻿@using WEB.MVCUI.Areas.Admin.Models.Entities
+@model List<WEB.MVCUI.Areas.Admin.Models.Entities.Category>
+
+<div class="navbar-nav w-100">
+
+    @if (Model != null)
+    {
+        @foreach (var item in Model)
+        {
+            <div class="category-item d-flex align-items-center mb-2">
+                <!-- Kategori ismi -->
+                <a href="" class="nav-item nav-link">@item.CategoryName</a>
+                <!-- Kategori resmi -->
+                <img src="@item.Photo" class="img-thumbnail ms-2" width="100" height="100" object-fit="cover" border-radius="5px" margin-left="10px" alt="Kategori Resmi">
+            </div>
+        }
+    }
+    else
+    {
+        <p>Kategoriler bulunamadı.</p>
+    }
+</div>

@@ -1,0 +1,112 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using WEB.MVCUI.Areas.Admin.Models.Entities
+@model List<Category>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kategori Listesi</title>
+
+    <!-- Bootstrap CSS -->
+    @* <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> *@
+</head>
+<body>
+
+    <div class="container mt-4">
+        <h2 class="text-center">Kategori Listesi</h2>
+
+        <div class="mb-3">
+            <a href="/Admin/Category/Add" class="btn btn-success">+ Kategori Ekle</a>
+        </div>
+        <div class="mb-3">
+            <a id="btnDeleteSelected" class="btn btn-danger">- Toplu Sil</a>
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width:10px">
+                        <input id="chkSelectAll" type="checkbox" />
+                    </th>
+                    <th>Fotoğraf</th>
+                    <th>ID</th>
+                    <th>Adı</th>
+                    <th>Açıklama</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input type="checkbox" class="chkSelectBox" catId="@item.CategoryID"/>
+                        </td>
+
+                        <td>
+                            <img src="@item.Photo" class="img-thumbnail" width="100" alt="Kategori Resmi">
+                        </td>
+                        <td>@item.CategoryID</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Category", new { id = item.CategoryID })" class="btn btn-warning btn-sm">Güncelle</a>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Delete", "Category", new { id = item.CategoryID })" class="btn btn-danger btn-sm" onclick="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">Sil</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- jQuery ve Bootstrap JS -->
+   @*  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery --> *@
+
+    <!-- Checkbox select/deselect script -->
+    <script>
+        $(document).ready(function () {
+            $("#chkSelectAll").on('change', function () {
+                $(".chkSelectBox").prop('checked', this.checked);
+            });
+
+            $("#btnDeleteSelected").click(function () {
+                var categoryIdsToDelete = [];
+                var chks = $(".chkSelectBox");
+                for (var i = 0; i < chks.length; i++) {
+
+                    if ($(chks[i]).is(":checked")) {
+                        categoryIdsToDelete.push($(chks[i]).attr("catid"));
+                    }
+
+                }
+
+                $.ajax({
+
+                    url:"/admin/category/deleteselected",
+                    method:"post",
+                    datatype:"json",
+                    data: { ids: categoryIdsToDelete },
+                    success: function (response) 
+                    {
+                        if (response.isOk) 
+                        {
+                            window.location.reload();
+                        }
+                    }
+
+                });
+
+
+            });
+        });
+    </script>
+
+</body>
+</html>
