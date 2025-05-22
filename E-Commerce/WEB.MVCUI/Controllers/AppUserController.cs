@@ -19,9 +19,7 @@ namespace WEB.MVCUI.Controllers
 {
     public class AppUserController : Controller
     {
-        private static string _clientId = "682714689156-t3h8nnpmlhgrdo6ji5lplk9obrg1vh9m.apps.googleusercontent.com";
-        private static string _clientSecret = "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";
-        private static string _refreshToken = "1//049YDC7wG41beCgYIARAAGAQSNwF-L9IrQXji4u65rmjz2KM95z3CJ1nrPDYnmj0ggukWYYhx5gxmFhRgr48_szxK2ygyHpSGJks";
+      
 
         [HttpGet]
         public IActionResult Register()
@@ -89,7 +87,7 @@ namespace WEB.MVCUI.Controllers
                     });
 
                     var emailMessage = new MimeMessage();
-                    emailMessage.From.Add(new MailboxAddress("Tradewnd Consumer Application", "tradewndconsumerapp@gmail.com"));
+                    emailMessage.From.Add(new MailboxAddress("Tradewnd Consumer Application", "@gmail.com"));
                     emailMessage.To.Add(new MailboxAddress(dto.FullName, dto.Email));
                     emailMessage.Subject = "Tradewnd App Yeni Kayıt Onay Maili";
                     emailMessage.Body = new TextPart("html")
