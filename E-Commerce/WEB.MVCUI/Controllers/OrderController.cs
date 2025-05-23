@@ -29,9 +29,9 @@ namespace WEB.MVCUI.Controllers
             if (cart == null || !cart.Any())
                 return RedirectToAction("Checkout","Order");
 
-            // TODO: Siparişi veritabanına kaydet
+           
 
-            // Sepeti temizle
+            
             HttpContext.Session.Remove("cart");
 
             TempData["Message"] = "Siparişiniz başarıyla alındı!";

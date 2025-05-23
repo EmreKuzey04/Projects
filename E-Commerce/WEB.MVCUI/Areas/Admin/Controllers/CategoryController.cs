@@ -40,34 +40,34 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
                 return View();
             }
 
-            // wwwroot yolunu al
+            
             string rootPath = _hostingEnvironment.WebRootPath;
 
-            // Kayıt dizinini belirle
+            
             string uploadPath = Path.Combine(rootPath, "Admin","images" ,"categoryImages");
 
-            // Eğer klasör yoksa oluştur
+           
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
             }
 
-            // Benzersiz bir dosya adı oluştur (Önlemek için)
+            
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Photo.FileName);
             string filePath = Path.Combine(uploadPath, fileName);
 
-            // Dosyayı kaydet
+            
             using (FileStream fs = new FileStream(filePath, FileMode.Create))
             {
                 dto.Photo.CopyTo(fs);
             }
 
-            // Kategori nesnesini oluştur ve veritabanına ekle
+            
             var category = new Category
             {
                 CategoryName = dto.CategoryName,
                 Description = dto.Description,
-                Photo = $"/admin/images/categoryImages/{fileName}" // Veritabanına kaydedilecek URL
+                Photo = $"/admin/images/categoryImages/{fileName}" 
             };
 
             using var ctx = new TradewndContext();
@@ -114,37 +114,31 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             
             if (dto.Photo != null)
             {
-                // önceki kategorinin resmini silme
+               
                 System.IO.File.Delete($"{_hostingEnvironment.WebRootPath}/{categoryToEdit.Photo}");
-                // wwwroot yolunu al
+              
                 string rootPath = _hostingEnvironment.WebRootPath;
 
-                // Kayıt dizinini belirle
+                
                 string uploadPath = Path.Combine(rootPath, "Admin", "categoryImages");
 
-                // Eğer klasör yoksa oluştur
+               
                 if (!Directory.Exists(uploadPath))
                 {
                     Directory.CreateDirectory(uploadPath);
                 }
 
-                // Benzersiz bir dosya adı oluştur (Önlemek için)
+          
                 string fileName = Guid.NewGuid().ToString() + Path.GetExtension(dto.Photo.FileName);
                 string filePath = Path.Combine(uploadPath, fileName);
 
-                // Dosyayı kaydet
+             
                 using (FileStream fs = new FileStream(filePath, FileMode.Create))
                 {
                     dto.Photo.CopyTo(fs);
                 }
 
-                // Kategori nesnesini oluştur ve veritabanına ekle
-
-
-                categoryToEdit.Photo = $"/admin/categoryImages/{fileName}"; // Veritabanına kaydedilecek URL
-                
-
-
+                categoryToEdit.Photo = $"/admin/categoryImages/{fileName}"; 
             }
             ctx.Categories.Update(categoryToEdit);
             ctx.SaveChanges();

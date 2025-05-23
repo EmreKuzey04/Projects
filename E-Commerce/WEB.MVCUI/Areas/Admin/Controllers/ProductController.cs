@@ -90,13 +90,13 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
         {
             using var ctx = new TradewndContext();
 
-            // Ürünü ve ürünün fotoğraflarını getir
+           
             var productToDelete = ctx.Products.Include(p => p.Photos)
                                               .SingleOrDefault(p => p.ProductId == id);
 
             if (productToDelete != null)
             {
-                // Fotoğraf dosyalarını sil
+                
                 if (productToDelete.Photos != null && productToDelete.Photos.Any())
                 {
                     foreach (var photo in productToDelete.Photos)
@@ -108,11 +108,11 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
                         }
                     }
 
-                    // Fotoğrafları veritabanından sil
+                  
                     ctx.ProductPhotos.RemoveRange(productToDelete.Photos);
                 }
 
-                // Ürünü sil
+            
                 ctx.Products.Remove(productToDelete);
                 ctx.SaveChanges();
             }
@@ -124,7 +124,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
         {
             using var ctx = new TradewndContext();
             var productToEdit = ctx.Products
-                .Include(p => p.Photos) // Fotoğrafları da yüklüyoruz
+                .Include(p => p.Photos) 
                 .SingleOrDefault(x => x.ProductId == id);
 
             return View(productToEdit);
@@ -141,7 +141,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             if (productToEdit == null)
                 return NotFound();
 
-            // Alan güncelleme
+            
             productToEdit.ProductName = dto.ProductName;
             productToEdit.UnitPrice = dto.UnitPrice;
             productToEdit.UnitsInStock = dto.UnitsInStock;
@@ -149,10 +149,10 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             productToEdit.CategoryId = dto.CategoryId;
             productToEdit.SupplierID = dto.SupplierID;
 
-            // Yeni fotoğraflar varsa işlem yap
+            
             if (dto.Photos != null && dto.Photos.Any())
             {
-                // Mevcut fotoğrafları ve dosyalarını sil
+                
                 if (productToEdit.Photos != null && productToEdit.Photos.Any())
                 {
                     foreach (var photo in productToEdit.Photos)
@@ -166,7 +166,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
                     ctx.ProductPhotos.RemoveRange(productToEdit.Photos);
                 }
 
-                // Yeni fotoğrafları kaydet ve ProductPhotos tablosuna ekle
+                
                 string rootPath = _hostingEnvironment.WebRootPath;
                 string uploadPath = Path.Combine(rootPath, "Admin", "productImages");
 

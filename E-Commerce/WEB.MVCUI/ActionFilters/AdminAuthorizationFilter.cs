@@ -15,7 +15,7 @@ public class AdminAuthorizationFilter : ActionFilterAttribute
             return;
         }
 
-        // Gerekirse session'dan user'ı deserialize edebilirsin:
+        
         var loggedInUser = JsonSerializer.Deserialize<User>(sessionData);
 
         base.OnActionExecuting(context);

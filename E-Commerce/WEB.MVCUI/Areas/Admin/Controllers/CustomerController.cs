@@ -46,7 +46,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             return View(customer);
         }
 
-        // POST: Admin/Customer/EditCustomer
+       
         [HttpPost]
         public IActionResult EditCustomer(int customerId, CustomerUpdateDto dto)
         {
@@ -75,7 +75,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             return View(customer);
         }
 
-        // POST: Admin/Customer/DeleteConfirmed
+
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {

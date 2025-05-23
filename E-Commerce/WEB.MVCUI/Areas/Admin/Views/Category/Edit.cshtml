@@ -19,7 +19,7 @@
                     <textarea id="Description" name="Description" class="form-control form-control-lg" rows="3">@Model.Description</textarea>
                 </div>
 
-                @* Mevcut resmi göster *@
+               
                 @if (!string.IsNullOrEmpty(Model.Photo))
                 {
                     <div class="mb-3">
@@ -28,7 +28,7 @@
                     </div>
                 }
 
-                @* Yeni resim yükleme alanı *@
+              
                 <div class="mb-3">
                     <label for="Photo" class="form-label">Yeni Kategori Resmi</label>
                     <input name="Photo" type="file" accept="image/png, image/jpeg" class="form-control" id="Photo" />

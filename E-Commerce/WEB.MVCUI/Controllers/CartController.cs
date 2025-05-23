@@ -179,7 +179,7 @@ namespace WEB.MVCUI.Controllers
             return View();
         }
 
-        // ✅ Siparişlerim
+      
         public IActionResult MyOrders()
         {
             var appUserJson = HttpContext.Session.GetString("ActiveAppUser");

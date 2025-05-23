@@ -48,7 +48,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             return View(employee);
         }
 
-        // POST: Admin/Employee/Edit
+
         [HttpPost]
         public IActionResult Edit(int EmployeeId, EmployeeUpdateDto dto)
         {
@@ -57,7 +57,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             if (employee == null)
                 return NotFound();
 
-            // DTO'dan entity'e alanları kopyala
+           
             employee.FirstName = dto.FirstName;
             employee.LastName = dto.LastName;
             employee.BirthDate = dto.BirthDate;
@@ -80,7 +80,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             return View(employee);
         }
 
-        // POST: Admin/Employee/DeleteConfirmed/5
+ 
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {

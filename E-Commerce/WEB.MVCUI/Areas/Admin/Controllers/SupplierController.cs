@@ -63,7 +63,7 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             return View(dto);
         }
 
-        // POST: admin/Supplier/Edit
+        
         [HttpPost]
         public IActionResult Edit(SupplierUpdateDto model)
         {
@@ -98,10 +98,10 @@ namespace WEB.MVCUI.Areas.Admin.Controllers
             if (supplier == null)
                 return NotFound();
 
-            return View(supplier); // Silme onayı için detay gösterilecekse
+            return View(supplier); 
         }
 
-        // POST: admin/Supplier/DeleteConfirmed
+        
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
